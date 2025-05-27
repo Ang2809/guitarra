@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Mundo de las Guitarras</title>
+  <title>El Mundo de las Guitarras | Pasión por la Música</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      --color-principal: #000;
-      --color-secundario: #d4af37; /* dorado */
-      --color-fondo: #fff;
-      --fuente: 'Segoe UI', sans-serif;
+      --color-principal: #1a1a1a;
+      --color-secundario: #d4af37;
+      --color-terciario: #8b0000;
+      --color-fondo: #f8f8f8;
+      --color-texto: #333;
+      --color-borde: #e0e0e0;
+      --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --sombra-hover: 0 8px 16px rgba(0, 0, 0, 0.15);
+      --transicion: all 0.3s ease-in-out;
+      --fuente-titulos: 'Playfair Display', serif;
+      --fuente-texto: 'Montserrat', sans-serif;
     }
 
     * {
@@ -19,46 +30,70 @@
     }
 
     body {
-      font-family: var(--fuente);
+      font-family: var(--fuente-texto);
       background-color: var(--color-fondo);
-      color: var(--color-principal);
+      color: var(--color-texto);
+      line-height: 1.6;
     }
 
     header {
       background-color: var(--color-principal);
       color: var(--color-secundario);
-      padding: 1rem;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: var(--sombra);
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-family: var(--fuente-titulos);
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
     }
 
     nav {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
     }
 
     nav a {
       color: var(--color-secundario);
       text-decoration: none;
-      transition: color 0.3s;
+      font-weight: 500;
+      transition: var(--transicion);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-secundario);
+      transition: var(--transicion);
     }
 
     nav a:hover {
       color: var(--color-fondo);
     }
 
+    nav a:hover::after {
+      width: 100%;
+    }
+
     .menu-toggle {
       display: none;
       flex-direction: column;
       cursor: pointer;
+      z-index: 1001;
     }
 
     .menu-toggle span {
@@ -66,118 +101,479 @@
       width: 25px;
       background: var(--color-secundario);
       margin: 4px 0;
+      transition: var(--transicion);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
     }
 
     .banner {
-      background: url('https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081036.png?raw=true') center/cover no-repeat;
-      height: 50vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081036.png?raw=true') center/cover no-repeat;
+      height: 70vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: var(--color-secundario);
-      text-shadow: 1px 1px #000;
-      font-size: 2rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
       text-align: center;
+      position: relative;
+    }
+
+    .banner-content {
+      max-width: 800px;
+      padding: 2rem;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .banner h2 {
+      font-family: var(--fuente-titulos);
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .banner p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: var(--transicion);
+      border: 2px solid var(--color-secundario);
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: var(--color-secundario);
+      transform: translateY(-3px);
+      box-shadow: var(--sombra-hover);
     }
 
     section {
-      padding: 2rem;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    h2 {
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-family: var(--fuente-titulos);
+      font-size: 2.5rem;
       color: var(--color-principal);
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: var(--color-secundario);
+      margin: 1rem auto;
+    }
+
+    #quienes {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+      margin: 2rem auto;
+    }
+
+    .mision-vision {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+      transition: var(--transicion);
+      border-top: 4px solid var(--color-secundario);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--sombra-hover);
+    }
+
+    .card h3 {
+      font-family: var(--fuente-titulos);
+      color: var(--color-principal);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .card i {
+      font-size: 2rem;
+      color: var(--color-secundario);
       margin-bottom: 1rem;
     }
 
-    .acordeon button {
+    .valores {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .valor {
+      flex: 1 1 200px;
+      text-align: center;
+      padding: 1.5rem;
+      background-color: var(--color-principal);
+      color: white;
+      border-radius: 8px;
+      transition: var(--transicion);
+    }
+
+    .valor:hover {
       background-color: var(--color-secundario);
       color: var(--color-principal);
-      padding: 1rem;
+    }
+
+    .valor h4 {
+      font-family: var(--fuente-titulos);
+      margin-bottom: 0.5rem;
+    }
+
+    .acordeon {
+      margin-top: 2rem;
+    }
+
+    .acordeon button {
+      background-color: var(--color-principal);
+      color: var(--color-secundario);
+      padding: 1.2rem;
       width: 100%;
       text-align: left;
       border: none;
       outline: none;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: var(--transicion);
+      font-family: var(--fuente-titulos);
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .acordeon button::after {
+      content: '+';
+      font-size: 1.5rem;
+      transition: var(--transicion);
+    }
+
+    .acordeon button.active::after {
+      content: '-';
     }
 
     .acordeon button:hover {
-      background-color: #bfa034;
+      background-color: #333;
     }
 
     .panel {
       display: none;
-      padding: 1rem;
-      background-color: #f9f9f9;
+      padding: 1.5rem;
+      background-color: white;
+      border-radius: 0 0 8px 8px;
+      box-shadow: var(--sombra);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
     .producto {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      transition: var(--transicion);
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra-hover);
+    }
+
+    .producto-img {
+      height: 250px;
+      overflow: hidden;
     }
 
     .producto img {
       width: 100%;
-      max-width: 300px;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transicion);
     }
 
-    .producto button {
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: var(--color-principal);
-      color: var(--color-fondo);
-      border: none;
-      cursor: pointer;
+    .producto:hover img {
+      transform: scale(1.05);
     }
 
-    .producto button:hover {
-      background-color: var(--color-secundario);
+    .producto-info {
+      padding: 1.5rem;
+    }
+
+    .producto h3 {
+      font-family: var(--fuente-titulos);
       color: var(--color-principal);
+      margin-bottom: 0.5rem;
+    }
+
+    .producto .precio {
+      color: var(--color-terciario);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .producto .btn {
+      width: 100%;
+      text-align: center;
+      padding: 0.6rem;
+      font-size: 0.9rem;
     }
 
     form {
       display: grid;
-      gap: 1rem;
+      gap: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
     }
 
     input, textarea {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
+      padding: 0.8rem;
+      border: 1px solid var(--color-borde);
       border-radius: 4px;
+      font-family: var(--fuente-texto);
+      transition: var(--transicion);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--color-secundario);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+    }
+
+    form button {
+      background-color: var(--color-principal);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transicion);
+    }
+
+    form button:hover {
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
     }
 
     footer {
       background-color: var(--color-principal);
-      color: var(--color-secundario);
+      color: white;
+      padding: 3rem 2rem 1.5rem;
       text-align: center;
-      padding: 1rem;
     }
 
-    .footer-links {
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-column h3 {
+      font-family: var(--fuente-titulos);
+      color: var(--color-secundario);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+
+    .footer-column p, .footer-column a {
+      color: #ccc;
+      margin-bottom: 0.8rem;
+      display: block;
+      transition: var(--transicion);
+      text-decoration: none;
+    }
+
+    .footer-column a:hover {
+      color: var(--color-secundario);
+      padding-left: 5px;
+    }
+
+    .social-links {
       display: flex;
-      justify-content: center;
       gap: 1rem;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: var(--transicion);
+    }
+
+    .social-links a:hover {
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transicion);
+      z-index: 999;
+      box-shadow: var(--sombra);
+    }
+
+    .scroll-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra-hover);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+      
       nav {
         display: none;
         flex-direction: column;
         background-color: var(--color-principal);
-        position: absolute;
-        top: 60px;
+        position: fixed;
+        top: 0;
         right: 0;
-        width: 200px;
+        width: 70%;
+        height: 100vh;
+        padding: 6rem 2rem 2rem;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        transform: translateX(100%);
+        transition: var(--transicion);
       }
 
       nav.active {
         display: flex;
+        transform: translateX(0);
       }
 
       .menu-toggle {
         display: flex;
+      }
+
+      .banner h2 {
+        font-size: 2.5rem;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .mision-vision {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .banner h2 {
+        font-size: 2rem;
+      }
+
+      .banner p {
+        font-size: 1rem;
+      }
+
+      section {
+        padding: 2rem 1rem;
       }
     }
   </style>
@@ -189,123 +585,357 @@
       <span></span><span></span><span></span>
     </div>
     <nav id="nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#quienes">Quiénes somos</a>
-      <a href="#productos">Productos</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
+      <a href="#quienes"><i class="fas fa-users"></i> Quiénes somos</a>
+      <a href="#productos"><i class="fas fa-guitar"></i> Productos</a>
+      <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
     </nav>
   </header>
 
   <section class="banner" id="inicio">
-    Expertos en sonido, artesanos en calidad
+    <div class="banner-content">
+      <h2>Expertos en sonido, artesanos en calidad</h2>
+      <p>Descubre la guitarra perfecta para expresar tu arte musical</p>
+      <a href="#productos" class="btn">Explorar Guitarras</a>
+    </div>
   </section>
 
   <section id="quienes">
-    <h2>Quiénes Somos</h2>
-    <p><strong>Misión:</strong> Ofrecer instrumentos musicales de la más alta calidad que acompañen el viaje artístico de cada músico, desde principiantes hasta profesionales. Nos dedicamos a brindar una experiencia personalizada que inspire creatividad y pasión por la música.</p>
-    <p><strong>Visión:</strong> Ser la tienda líder en guitarras a nivel nacional, reconocida por nuestra excelencia en servicio, conocimiento técnico y compromiso con la comunidad musical.</p>
-    <p><strong>Valores:</strong> Pasión por la música desde 1990, compromiso con la calidad, autenticidad en cada instrumento, y un trato humano que construye relaciones duraderas con nuestros clientes.</p>
+    <div class="section-title">
+      <h2>Quiénes Somos</h2>
+    </div>
+    
+    <div class="mision-vision">
+      <div class="card">
+        <i class="fas fa-bullseye"></i>
+        <h3>Misión</h3>
+        <p>Ofrecer instrumentos musicales de la más alta calidad que acompañen el viaje artístico de cada músico, desde principiantes hasta profesionales. Nos dedicamos a brindar una experiencia personalizada que inspire creatividad y pasión por la música.</p>
+      </div>
+      
+      <div class="card">
+        <i class="fas fa-eye"></i>
+        <h3>Visión</h3>
+        <p>Ser la tienda líder en guitarras a nivel nacional, reconocida por nuestra excelencia en servicio, conocimiento técnico y compromiso con la comunidad musical.</p>
+      </div>
+      
+      <div class="card">
+        <i class="fas fa-award"></i>
+        <h3>Nuestra Historia</h3>
+        <p>Desde 1990, hemos acompañado a generaciones de músicos, evolucionando con las tendencias pero manteniendo nuestro compromiso con la autenticidad y calidad en cada instrumento.</p>
+      </div>
+    </div>
+    
+    <div class="section-title">
+      <h3>Nuestros Valores</h3>
+    </div>
+    
+    <div class="valores">
+      <div class="valor">
+        <h4>Pasión</h4>
+        <p>Amamos la música tanto como nuestros clientes</p>
+      </div>
+      <div class="valor">
+        <h4>Calidad</h4>
+        <p>Solo ofrecemos lo mejor en instrumentos</p>
+      </div>
+      <div class="valor">
+        <h4>Autenticidad</h4>
+        <p>Cada guitarra tiene su propia historia</p>
+      </div>
+      <div class="valor">
+        <h4>Compromiso</h4>
+        <p>Relaciones duraderas con nuestros clientes</p>
+      </div>
+    </div>
   </section>
 
   <section id="productos">
-    <h2>Productos</h2>
+    <div class="section-title">
+      <h2>Nuestros Productos</h2>
+      <p>Selección cuidadosa de las mejores guitarras para cada necesidad</p>
+    </div>
+    
     <div class="acordeon">
-      <button onclick="togglePanel(0)">Guitarras Acústicas</button>
+      <button onclick="togglePanel(0)">
+        <span>Guitarras Acústicas</span>
+        <span class="icon">+</span>
+      </button>
       <div class="panel">
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081851.png?raw=true" alt="Guitarra Acústica 1">
-          <p><strong>Yamaha F310 - $3,000 MXN</strong><br>Construida con tapa de abeto y cuerpo de meranti, esta guitarra acústica es perfecta para quienes buscan un sonido cálido y una excelente relación calidad-precio. Ideal para estudiantes y músicos aficionados que desean una guitarra confiable y duradera.</p>
-          <button>Más detalles</button>
-        </div>
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081859.png?raw=true" alt="Guitarra Acústica 2">
-          <p><strong>Fender FA-125 - $3,500 MXN</strong><br>Esta guitarra ofrece una estética moderna con una sonoridad brillante. Su construcción de calidad y cómodo mástil hacen que tocar sea un placer tanto en casa como en presentaciones en vivo.</p>
-          <button>Más detalles</button>
+        <div class="productos-grid">
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081851.png?raw=true" alt="Guitarra Acústica 1">
+            </div>
+            <div class="producto-info">
+              <h3>Yamaha F310</h3>
+              <span class="precio">$3,000 MXN</span>
+              <p>Construida con tapa de abeto y cuerpo de meranti, esta guitarra acústica es perfecta para quienes buscan un sonido cálido y una excelente relación calidad-precio.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
+          
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20081859.png?raw=true" alt="Guitarra Acústica 2">
+            </div>
+            <div class="producto-info">
+              <h3>Fender FA-125</h3>
+              <span class="precio">$3,500 MXN</span>
+              <p>Esta guitarra ofrece una estética moderna con una sonoridad brillante. Su construcción de calidad y cómodo mástil hacen que tocar sea un placer.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <button onclick="togglePanel(1)">Guitarras Eléctricas</button>
+      <button onclick="togglePanel(1)">
+        <span>Guitarras Eléctricas</span>
+        <span class="icon">+</span>
+      </button>
       <div class="panel">
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20082610.png?raw=true" alt="Guitarra Eléctrica 1">
-          <p><strong>Epiphone Les Paul - $7,200 MXN</strong><br>Con un cuerpo sólido de caoba y humbuckers clásicos, esta guitarra es ideal para estilos como el rock, blues o metal. Su acabado elegante y sonido potente la hacen una opción favorita para músicos exigentes.</p>
-          <button>Más detalles</button>
-        </div>
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20082617.png?raw=true" alt="Guitarra Eléctrica 2">
-          <p><strong>Ibanez GRX40 - $6,800 MXN</strong><br>Versátil y accesible, esta guitarra cuenta con tres pastillas (HSS), lo que permite un amplio rango de sonidos. Recomendada para principiantes con aspiraciones a explorar distintos géneros musicales.</p>
-          <button>Más detalles</button>
+        <div class="productos-grid">
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20082610.png?raw=true" alt="Guitarra Eléctrica 1">
+            </div>
+            <div class="producto-info">
+              <h3>Epiphone Les Paul</h3>
+              <span class="precio">$7,200 MXN</span>
+              <p>Con un cuerpo sólido de caoba y humbuckers clásicos, esta guitarra es ideal para estilos como el rock, blues o metal. Su acabado elegante y sonido potente.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
+          
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20082617.png?raw=true" alt="Guitarra Eléctrica 2">
+            </div>
+            <div class="producto-info">
+              <h3>Ibanez GRX40</h3>
+              <span class="precio">$6,800 MXN</span>
+              <p>Versátil y accesible, esta guitarra cuenta con tres pastillas (HSS), lo que permite un amplio rango de sonidos. Recomendada para principiantes.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <button onclick="togglePanel(2)">Guitarras Clásicas</button>
+      <button onclick="togglePanel(2)">
+        <span>Guitarras Clásicas</span>
+        <span class="icon">+</span>
+      </button>
       <div class="panel">
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20083642.png?raw=true" alt="Guitarra Clásica 1">
-          <p><strong>Rickenbacker - $4,500 MXN</strong><br>Diseñada para ofrecer un tono suave y envolvente, esta guitarra clásica combina tradición artesanal con un diseño refinado. Ideal para quienes buscan un sonido equilibrado y estética cuidada.</p>
-          <button>Más detalles</button>
-        </div>
-        <div class="producto">
-          <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20083633.png?raw=true" alt="Guitarra Clásica 2">
-          <p><strong>Yamaha C40 - $3,900 MXN</strong><br>Una de las guitarras clásicas más populares para principiantes. Con cuerdas de nailon y una estructura cómoda, permite desarrollar una técnica limpia y precisa desde las primeras lecciones.</p>
-          <button>Más detalles</button>
+        <div class="productos-grid">
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20083642.png?raw=true" alt="Guitarra Clásica 1">
+            </div>
+            <div class="producto-info">
+              <h3>Rickenbacker</h3>
+              <span class="precio">$4,500 MXN</span>
+              <p>Diseñada para ofrecer un tono suave y envolvente, esta guitarra clásica combina tradición artesanal con un diseño refinado.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
+          
+          <div class="producto">
+            <div class="producto-img">
+              <img src="https://github.com/Ang2809/guitarra/blob/main/Captura%20de%20pantalla%202025-05-27%20083633.png?raw=true" alt="Guitarra Clásica 2">
+            </div>
+            <div class="producto-info">
+              <h3>Yamaha C40</h3>
+              <span class="precio">$3,900 MXN</span>
+              <p>Una de las guitarras clásicas más populares para principiantes. Con cuerdas de nailon y una estructura cómoda.</p>
+              <a href="#" class="btn">Más detalles</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <section id="contacto">
-    <h2>Contacto</h2>
+    <div class="section-title">
+      <h2>Contacto</h2>
+      <p>¿Tienes preguntas? Escríbenos y te responderemos pronto</p>
+    </div>
+    
     <form id="formulario" onsubmit="return validarFormulario()">
-      <input type="text" id="nombre" placeholder="Nombre">
-      <input type="email" id="email" placeholder="Correo electrónico">
-      <input type="tel" id="telefono" placeholder="Teléfono">
-      <input type="date" id="fecha">
-      <textarea id="mensaje" placeholder="Mensaje"></textarea>
-      <button type="submit">Enviar</button>
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" placeholder="Ingresa tu email">
+      </div>
+      
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" placeholder="Ingresa tu teléfono">
+      </div>
+      
+      <div class="form-group">
+        <label for="fecha">Fecha preferida de contacto</label>
+        <input type="date" id="fecha">
+      </div>
+      
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+      </div>
+      
+      <button type="submit">Enviar Mensaje</button>
     </form>
   </section>
 
   <footer>
-    <div class="footer-links">
-      <a href="#inicio">Inicio</a>
-      <a href="#productos">Productos</a>
-      <a href="#contacto">Contacto</a>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>El Mundo de las Guitarras</h3>
+        <p>Pasamos por la música desde 1990, ofreciendo los mejores instrumentos y asesoramiento profesional.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Enlaces rápidos</h3>
+        <a href="#inicio">Inicio</a>
+        <a href="#quienes">Quiénes somos</a>
+        <a href="#productos">Productos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Av. Música 123, Ciudad</p>
+        <p><i class="fas fa-phone"></i> (55) 1234 5678</p>
+        <p><i class="fas fa-envelope"></i> info@mundoguitarras.com</p>
+        <p><i class="fas fa-clock"></i> Lunes a Sábado: 10am - 8pm</p>
+      </div>
     </div>
-    <p>&copy; 2025 El Mundo de las Guitarras. Todos los derechos reservados.</p>
+    
+    <div class="copyright">
+      <p>&copy; 2025 El Mundo de las Guitarras. Todos los derechos reservados.</p>
+    </div>
   </footer>
 
+  <div class="scroll-top" id="scrollTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
   <script>
-    const panels = document.querySelectorAll('.panel');
-    function togglePanel(i) {
-      panels.forEach((panel, index) => {
-        if (i === index) {
-          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        } else {
-          panel.style.display = 'none';
+    // Menú móvil
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('nav');
+    
+    function toggleMenu() {
+      menuToggle.classList.toggle('active');
+      nav.classList.toggle('active');
+    }
+    
+    // Cerrar menú al hacer clic en un enlace
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          menuToggle.classList.remove('active');
+          nav.classList.remove('active');
         }
       });
+    });
+    
+    // Acordeón
+    const acordeonButtons = document.querySelectorAll('.acordeon button');
+    
+    function togglePanel(index) {
+      const panel = document.querySelectorAll('.panel')[index];
+      const button = acordeonButtons[index];
+      
+      button.classList.toggle('active');
+      
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none';
+      } else {
+        // Cerrar otros paneles
+        document.querySelectorAll('.panel').forEach((p, i) => {
+          if (i !== index) {
+            p.style.display = 'none';
+            acordeonButtons[i].classList.remove('active');
+          }
+        });
+        
+        panel.style.display = 'block';
+      }
     }
-
-    function toggleMenu() {
-      document.getElementById('nav').classList.toggle('active');
-    }
-
+    
+    // Validación de formulario
     function validarFormulario() {
       const nombre = document.getElementById('nombre').value.trim();
       const email = document.getElementById('email').value.trim();
       const telefono = document.getElementById('telefono').value.trim();
       const fecha = document.getElementById('fecha').value.trim();
       const mensaje = document.getElementById('mensaje').value.trim();
-
+      
       if (!nombre || !email || !telefono || !fecha || !mensaje) {
-        alert('Por favor, complete todos los campos.');
+        alert('Por favor, complete todos los campos requeridos.');
         return false;
       }
-
-      alert('Formulario enviado correctamente.');
-      return true;
+      
+      // Validación simple de email
+      if (!/^\S+@\S+\.\S+$/.test(email)) {
+        alert('Por favor, ingrese un correo electrónico válido.');
+        return false;
+      }
+      
+      alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
+      document.getElementById('formulario').reset();
+      return false; // Para evitar envío real en este ejemplo
     }
+    
+    // Botón de scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('active');
+      } else {
+        scrollTopBtn.classList.remove('active');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Animación al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      sections.forEach(section => {
+        section.style.opacity = 0;
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(section);
+      });
+    });
   </script>
 </body>
 </html>
