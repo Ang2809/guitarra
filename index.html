@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Mundo de las Guitarras</title>
+  <style>
+    :root {
+      --color-principal: #000;
+      --color-secundario: #d4af37; /* dorado */
+      --color-fondo: #fff;
+      --fuente: 'Segoe UI', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--fuente);
+      background-color: var(--color-fondo);
+      color: var(--color-principal);
+    }
+
+    header {
+      background-color: var(--color-principal);
+      color: var(--color-secundario);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav a {
+      color: var(--color-secundario);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--color-fondo);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: var(--color-secundario);
+      margin: 4px 0;
+    }
+
+    .banner {
+      background: url('banner.jpg') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--color-secundario);
+      text-shadow: 1px 1px #000;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    section {
+      padding: 2rem;
+    }
+
+    h2 {
+      color: var(--color-principal);
+      margin-bottom: 1rem;
+    }
+
+    .acordeon button {
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
+      padding: 1rem;
+      width: 100%;
+      text-align: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .acordeon button:hover {
+      background-color: #bfa034;
+    }
+
+    .panel {
+      display: none;
+      padding: 1rem;
+      background-color: #f9f9f9;
+    }
+
+    .producto {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .producto img {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .producto button {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: var(--color-principal);
+      color: var(--color-fondo);
+      border: none;
+      cursor: pointer;
+    }
+
+    .producto button:hover {
+      background-color: var(--color-secundario);
+      color: var(--color-principal);
+    }
+
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    footer {
+      background-color: var(--color-principal);
+      color: var(--color-secundario);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: var(--color-principal);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>El Mundo de las Guitarras</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <a href="#inicio">Inicio</a>
+      <a href="#quienes">Quiénes somos</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="banner" id="inicio">
+    Expertos en sonido, artesanos en calidad
+  </section>
+
+  <section id="quienes">
+    <h2>Quiénes Somos</h2>
+    <p><strong>Misión:</strong> Ofrecer instrumentos de calidad que inspiren a cada músico.</p>
+    <p><strong>Visión:</strong> Ser la tienda líder en guitarras a nivel nacional.</p>
+    <p><strong>Valores:</strong> Pasión por la música desde 1990, compromiso, autenticidad.</p>
+  </section>
+
+  <section id="productos">
+    <h2>Productos</h2>
+    <div class="acordeon">
+      <button onclick="togglePanel(0)">Guitarras Acústicas</button>
+      <div class="panel">
+        <div class="producto">
+          <img src="acustica1.jpg" alt="Guitarra Acústica 1">
+          <p>Yamaha F310 - $3,000 MXN</p>
+          <button>Más detalles</button>
+        </div>
+        <div class="producto">
+          <img src="acustica2.jpg" alt="Guitarra Acústica 2">
+          <p>Fender FA-125 - $3,500 MXN</p>
+          <button>Más detalles</button>
+        </div>
+      </div>
+
+      <button onclick="togglePanel(1)">Guitarras Eléctricas</button>
+      <div class="panel">
+        <div class="producto">
+          <img src="electrica1.jpg" alt="Guitarra Eléctrica 1">
+          <p>Epiphone Les Paul - $7,200 MXN</p>
+          <button>Más detalles</button>
+        </div>
+        <div class="producto">
+          <img src="electrica2.jpg" alt="Guitarra Eléctrica 2">
+          <p>Ibanez GRX40 - $6,800 MXN</p>
+          <button>Más detalles</button>
+        </div>
+      </div>
+
+      <button onclick="togglePanel(2)">Guitarras Clásicas</button>
+      <div class="panel">
+        <div class="producto">
+          <img src="clasica1.jpg" alt="Guitarra Clásica 1">
+          <p>Admira Alba - $4,500 MXN</p>
+          <button>Más detalles</button>
+        </div>
+        <div class="producto">
+          <img src="clasica2.jpg" alt="Guitarra Clásica 2">
+          <p>Yamaha C40 - $3,900 MXN</p>
+          <button>Más detalles</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form id="formulario" onsubmit="return validarFormulario()">
+      <input type="text" id="nombre" placeholder="Nombre">
+      <input type="email" id="email" placeholder="Correo electrónico">
+      <input type="tel" id="telefono" placeholder="Teléfono">
+      <input type="date" id="fecha">
+      <textarea id="mensaje" placeholder="Mensaje"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <p>&copy; 2025 El Mundo de las Guitarras. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+    function togglePanel(i) {
+      panels.forEach((panel, index) => {
+        if (i === index) {
+          panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        } else {
+          panel.style.display = 'none';
+        }
+      });
+    }
+
+    function toggleMenu() {
+      document.getElementById('nav').classList.toggle('active');
+    }
+
+    function validarFormulario() {
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const fecha = document.getElementById('fecha').value.trim();
+      const mensaje = document.getElementById('mensaje').value.trim();
+
+      if (!nombre || !email || !telefono || !fecha || !mensaje) {
+        alert('Por favor, complete todos los campos.');
+        return false;
+      }
+
+      alert('Formulario enviado correctamente.');
+      return true;
+    }
+  </script>
+</body>
+</html>
