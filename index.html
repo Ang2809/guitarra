@@ -7,7 +7,7 @@
   <style>
     :root {
       --color-principal: #000;
-      --color-secundario: #d4af37; /* dorado */
+      --color-secundario: #d4af37;
       --color-fondo: #fff;
       --fuente: 'Segoe UI', sans-serif;
     }
@@ -78,6 +78,7 @@
       text-shadow: 1px 1px #000;
       font-size: 2rem;
       text-align: center;
+      padding: 2rem;
     }
 
     section {
@@ -120,6 +121,7 @@
     .producto img {
       width: 100%;
       max-width: 300px;
+      border-radius: 8px;
     }
 
     .producto button {
@@ -129,6 +131,7 @@
       color: var(--color-fondo);
       border: none;
       cursor: pointer;
+      border-radius: 4px;
     }
 
     .producto button:hover {
@@ -203,8 +206,8 @@
   <section id="quienes">
     <h2>Quiénes Somos</h2>
     <p><strong>Misión:</strong> Ofrecer instrumentos de calidad que inspiren a cada músico.</p>
-    <p><strong>Visión:</strong> Ser la tienda líder en guitarras a nivel nacional.</p>
-    <p><strong>Valores:</strong> Pasión por la música desde 1990, compromiso, autenticidad.</p>
+    <p><strong>Visión:</strong> Ser la tienda líder en guitarras a nivel nacional, brindando experiencias únicas y fomentando el amor por la música.</p>
+    <p><strong>Valores:</strong> Pasión por la música desde 1990, compromiso, autenticidad, dedicación y excelencia artesanal.</p>
   </section>
 
   <section id="productos">
@@ -256,6 +259,7 @@
 
   <section id="contacto">
     <h2>Contacto</h2>
+    <p>¿Tienes dudas, quieres conocer más modelos o necesitas mantenimiento? Agenda una cita en nuestro taller o escríbenos tu consulta:</p>
     <form id="formulario" onsubmit="return validarFormulario()">
       <input type="text" id="nombre" placeholder="Nombre">
       <input type="email" id="email" placeholder="Correo electrónico">
